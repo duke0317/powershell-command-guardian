@@ -87,19 +87,18 @@ Omit empty sections. If original command is already valid, say so and avoid cosm
 Input:
 
 ```text
-Convert `export TOKEN=123 && rm -rf /mnt/d/data/cache` for PowerShell 5.1.
+Convert `test -d /mnt/d/data/cache && echo ready` from WSL to Windows PowerShell 5.1.
 ```
 
 Output approach:
 
 ```powershell
-$env:TOKEN = '123'
-if ($?) {
-    Remove-Item -LiteralPath 'D:\data\cache' -Recurse -Force -Confirm
+if (Test-Path -LiteralPath 'D:\data\cache' -PathType Container) {
+    Write-Output 'ready'
 }
 ```
 
-Explain that `/mnt/d/...` was interpreted as a WSL path. Flag recursive deletion and require target confirmation. Do not claim `-Confirm` makes deletion risk-free.
+Explain that `/mnt/d/...` was interpreted as a WSL path and that the conditional behavior was preserved without using PowerShell 7 pipeline-chain syntax.
 
 Input:
 

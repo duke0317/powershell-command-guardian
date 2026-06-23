@@ -33,9 +33,9 @@ Invoke-WebRequest https://example.com/data.json -OutFile C:/Temp/data.json
 ```
 
 ```text
-把下面 WSL 命令转换为 PowerShell 7，同时保留失败时停止执行的语义：
+把下面 WSL 命令转换为 Windows PowerShell 5.1，同时保留条件执行语义：
 
-export TOKEN=123 && rm -rf /mnt/d/data/cache
+test -d /mnt/d/data/cache && echo ready
 ```
 
 Skill 会输出具体问题、修正命令及必要假设；原命令有效时不会为了样式而重写。
